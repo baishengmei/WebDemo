@@ -1,0 +1,105 @@
+<!Doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telphone=no, email=no">
+  <title>endCard</title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    width: 100%;
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }
+
+  #container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* 竖屏样式 */
+  #imgWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-image: url(./img/img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  #imgWrapper > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  #contentWrapper {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+  }
+
+  #content {
+    margin-top: 20%;
+    padding: 20px;
+    text-indent: 2em;
+    line-height: 1.5;
+  }
+
+  #btn {
+    float: right;
+    margin-right: 30px;
+    width: 100px;
+    height: 36px;
+  }
+
+  /* 横屏样式 */
+  @media all and (orientation: landscape) {
+    #imgWrapper {
+      width: 50%;
+      height: 100%;
+      background-image: url(./img/img2.jpg);
+    }
+    #contentWrapper {
+      top: 0;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+    }
+  }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="imgWrapper">
+    </div>
+    <div id="contentWrapper">
+      <div id="content">
+        易旗下利用大数据技术提供移动互联网应用的子公司,过去8年,先后推出有道词典、有道翻译官、有道云笔记、惠惠网、 有道推广、有道学堂、有道口语大师等系列产品,总……
+      </div>
+      <button id="btn">了解详情</button>
+    </div>
+  </div>
+</body>
+
+</html>

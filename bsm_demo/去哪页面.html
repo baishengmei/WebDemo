@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>个人页面导航 兼容</title>
+    <style>
+        body {font-family:sans-serif;overflow-x:hidden; }
+
+        body,h1,h2,h3,ul,p,ol,form,fieldset,figure{
+            margin: 0;
+            padding: 0;
+        }
+
+        div,figure,img,input,button{
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f5f5f5;
+            font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft YaHei UI","Microsoft YaHei",SimHei,"宋体",SimSun,Sans-Serif;
+        }
+        img{
+            display: block;
+            max-width: 100%;
+        }
+        ul,ol {
+            list-style: outside none none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .none{
+            display: none;
+        }
+
+        .sm-visible{
+            display: none;
+        }
+        .clearfix:after{
+            content: ".";
+            height: 0;
+            visibility: hidden;
+            display: block;
+            clear: both;
+        }
+        #header {
+            width: 100%;
+            height: 65px;
+            background-color:#333;
+            box-shadow: 0 11px 10px rgba(0,0,0,0.3);//导航栏阴印
+        position: fixed;
+            top:0;
+            z-index: 9999;
+        }
+        #header .center{
+            max-width: 1263px;
+            height: 65px;
+            margin: 0 auto;
+        }
+        #header .logo{
+            margin: 1px;
+            width:30%;
+            height:62px;
+            background:url(img/LOGO.png) no-repeat left;
+            text-indent: -9999px;
+            float: left;
+        }
+        #header .link{
+            width: 69%;
+            height: 65px;
+            line-height: 65px;
+            color: #eee;
+            float: right;
+        }
+        #header .link li{
+            width: 33.3%;
+            text-align: center;
+            float: right;
+        }
+        #header .link a{
+            color: #eee;
+            display: block;
+        }
+        #header .link a:hover,
+        #header .active a{
+            background-color: #000;
+        }
+
+        #search{
+            width: 100%;
+            max-width: 1920px;
+            height: 550px;
+            background: url(img/海岛.jpg) no-repeat center;
+            position: relative;
+            margin: 0 auto;
+            padding: 70px 0 0 0;
+        }
+
+
+        #search .center{
+            width: 40%;
+            height: 60px;
+            background-color: #000;
+            position:absolute ;
+            top:50%;
+            left: 50%;
+            margin: -10px 0 0 -20%;
+            opacity: 0.6;
+            border-radius: 10px;
+        }
+
+        #search .copy{
+            opacity: 1;
+            background-color: transparent;
+            padding: 3px 3px 0 3px;
+        }
+
+        #search .search{
+            width: 70%;
+            height: 54px;
+            background-color: #fff;
+            color: #666;
+            border: 1px solid #666;
+            border-radius: 10px;
+            font-size: 24px;
+            padding: 0 10px;
+            outline: none;
+            display: block;
+            float: left;
+        }
+
+        #search .button{
+            width: 30%;
+            height: 54px;
+            background-color: #eee;
+            color: #666;
+            border: 1px solid #333;
+            border-left-width: 3px;
+            border-radius: 10px;
+            font-size: 24px;
+            outline: none;
+            cursor: pointer;
+            font-weight: bold;
+            display: block;
+            float: right;
+        }
+
+        #menu{
+            max-width: 1263px;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+
+        #menu .center h2{
+            font-size: 45px;
+            letter-spacing: 2px;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        #menu .center p{
+            color: #666;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        #menu figure{
+            border: 1px solid  #ddd;
+            display: inline-block;
+            padding: 4px;
+            border-radius: 4px;
+            margin: 25px 0.4%;
+            width: 31%;
+            text-align: left;
+            position: relative;
+        }
+
+        #menu figure img{
+            vertical-align:middle;
+        }
+
+        #menu .sat{
+            float:right;
+            font-size: 13px;
+            color: #999;
+            font-style: normal;
+            position: relative;
+            top:5px;
+            right: 5px;
+            line-height: 15px;
+            overflow: hidden;
+        }
+
+        #menu .score{
+            color: #f60;
+            font-size: 14px;
+            line-height: 15px;
+            overflow: hidden;
+        }
+
+        #menu .score strong{
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+
+        #menu .type{ // 标签
+        width: 90px;
+            height: 25px;
+            line-height: 25px;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            background-color:#ccc;
+            position: absolute;
+            top:4px;
+            left: 4px;
+        }
+
+        /*媒体查询，参考部分Bootstarp框架*/
+        /*当页面大于1200px时，大屏幕，主要显示PC端*/
+        @media (min-width: 1200px){
+        }
+        /*在992 和1199 像素之间的屏幕里，中等屏幕，分辨率低的PC*/
+        @media (min-width: 992px) and (max-width: 1199px){
+            #search .center{
+                width: 50%;
+                margin: -10px 0 0 -25%;
+            }
+            #menu .center h2{
+                font-size: 40px;
+            }
+        }
+        /*在768 和991 像素之间的屏幕里，小屏幕，主要是PAD*/
+        @media (min-width: 768px) and (max-width: 991px){
+            #search .center{
+                width: 60%;
+                margin: -10px 0 0 -30%;
+            }
+            #search .search, #search .button{
+                font-size: 20px;
+            }
+            #menu .center h2{
+                font-size: 35px;
+            }
+        }
+        /*在480 和767 像素之间的屏幕里，超小屏幕，主要是手机*/
+        @media (min-width: 480px) and (max-width: 767px){
+            #header,#header .link,#header .center{
+                height: 45px;
+            }
+            #header .logo, .sm-hidden{
+                display: none;
+            }
+            #header .link{
+                width: 100%;
+                line-height: 45px;
+            }
+            #search{
+                padding: 45px 0 0 0;
+            }
+            #search .center{
+                width: 70%;
+                height: 53px;
+                margin: -10px 0 0 -35%;
+            }
+            #search .search, #search .button{
+                height: 45px;
+                font-size: 18px;
+            }
+            .sm-visible{
+                display: block;
+            }
+            #menu .center h2{
+                font-size: 30px;
+            }
+            #menu .center p{
+                font-size: 15px;
+            }
+            #menu figure{
+                width: 49.2%;
+            }
+        }
+        /*在小于480px的屏幕里，微小屏幕，更低分辨率的手机*/
+        @media (max-width: 479px){
+            #header,#header .link,#header .center{
+                height: 45px;
+            }
+            #header .logo, .xs-hidden, .sm-hidden{
+                display: none;
+            }
+            #header .link{
+                width: 100%;
+                line-height: 45px;
+            }
+            #header .link li{
+                width: 50%;
+            }
+            #search{
+                padding: 45px 0 0 0;
+            }
+            #search .center{
+                height: 48px;
+                width: 80%;
+                margin: -10px 0 0 -40%;
+            }
+            #search .search, #search .button{
+                height: 40px;
+                font-size: 16px;
+            }
+            .sm-visible{
+                display: block;
+            }
+            #footer .bottom, #footer .version{
+                font-size: 13px;
+            }
+            #menu .center h2{
+                font-size: 26px;
+            }
+            #menu .center p{
+                font-size: 14px;
+            }
+            #menu figure{
+                width: 99%;
+            }
+        }
+
+        #footer{
+            width: 100%;
+            background-color: #83858C;
+            text-align: center;
+        }
+
+        #footer .top{
+            max-width: 1263px;
+            width:1263px;
+            height: 280px;
+            margin: 0 auto;
+        }
+
+        #footer .version{
+            color: #777;
+            text-align: center;
+            padding: 10px;
+        }
+        #footer .block{
+            width:33.3%;
+            height: 320px;
+            text-align: left;
+            color: #ccc;
+            vertical-align: top;
+            display: block;
+            float: left;
+        }
+
+        #footer a:link,
+        #footer a:visited {
+            color:#000000;
+            text-decoration:underline;
+        }
+        #footer a:hover,
+        #footer a:active {
+            color:#e0e7ec;
+            text-decoration:none;
+        }
+
+        #footer h2{
+            font-size: 24px;
+            font-weight: normal;
+            padding: 20px 0 0 20px;
+        }
+
+        #footer hr{
+            width: 90%;
+            border: 1px dashed #333;
+        }
+
+        #footer ul{
+            font-size: 18px;
+            color: #000000;
+            text-indent: 20px;
+            line-height: 2;
+        }
+
+        #footer .bottom{
+            padding: 15px 0;
+            background-color: #000;
+            color: #777;
+            text-align: center;
+            border-top: 1px solid #444;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header id="header">
+    <div class="center">
+        <h1 class="logo"></h1>
+        <nav class="link">
+            <h2 class="none">导航</h2>
+            <ul>
+                <li><a href="tencent://message/?uin=">启动QQ</a></li>
+                <li><a href="https://wx.qq.com/" target="_blank"><span class="xs-hidden">网页版微信</span>打开微信</a></li>
+                <li class="xs-hidden"><a href="http://weibo.com/" target="_blank">新浪微博</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="search">
+    <div class="center"></div>
+    <div class="center copy">
+        <form onsubmit="return baiduWithHttps(this)" action="http://www.baidu.com/baidu" target="_blank">
+            <input name="tn" type="hidden" value="SE_zzsearchcode_shhzc78w">
+            <a href="https://www.baidu.com/" target="_blank"></a>
+
+            <input type="text"  onfocus="checkHttps" placeholder="输入搜索相关内容" class="search" name="word"  size="30">
+
+            <button type="submit" value="搜索" class="button">搜索</button>
+        </form>
+        <script src="http://s1.bdstatic.com/r/www/cache/global/js/BaiduHttps_20150714_zhanzhang.js"></script>
+        <script>
+            function checkHttps () {
+                BaiduHttps.useHttps();
+            }
+            function baiduWithHttps (formname) {
+                var data = BaiduHttps.useHttps();
+                if (data.s === 0) {
+                    return true;
+                }
+                else {
+                    formname.action = 'https://www.baidu.com/baidu' + '?ssl_s=1&ssl_c' + data.ssl_code;
+                    return true;
+                }
+            }
+        </script>
+    </div>
+
+</div>
+<div id="menu">
+    <section  class="center">
+        <h2>常用</h2>
+        <p>pc端，移动端，兼容响应式页面。</p>
+    </section>
+    <figure>
+        <a href="http://www.qq.com/" target="_blank"></a>
+        <img src="img/腾讯.jpg" alt="">
+        <div>
+            <em class="sat">中国浏览量最大的中文门户网站</em>
+            <span class="score"><strong>腾讯网</strong></span>
+        </div>
+        <div class="type">腾讯</div>
+    </figure>
+    <figure>
+        <a href="http://www.sina.com.cn/" target="_blank"></a>
+        <img src="img/sina.jpg" alt="">
+        <div>
+            <em class="sat">为全球用户24小时提供全面及时的中文资讯</em>
+            <span class="score"><strong>新浪网</strong></span>
+        </div>
+        <div class="type">新浪</div>
+    </figure>
+    <figure>
+        <a href="http://www.163.com/" target="_blank"></a>
+        <img src="img/网易.jpg" alt="">
+        <div>
+            <em class="sat">最有态度的网站</em>
+            <span class="score"><strong>网易</strong></span>
+        </div>
+        <div class="type">网易</div>
+    </figure>
+    <figure>
+        <a href="http://www.huxiu.com/" target="_blank"></a>
+        <img src="img/虎嗅.png" alt="">
+        <div>
+            <em class="sat">带给你最新的资讯</em>
+            <span class="score"><strong>虎嗅</strong></span>
+        </div>
+        <div class="type">虎嗅</div>
+    </figure>
+    <figure>
+        <a href="https://www.zhihu.com/" target="_blank"></a>
+        <img src="img/知乎.png" alt="">
+        <div>
+            <em class="sat">知无不言</em>
+            <span class="score"><strong>知乎</strong></span>
+        </div>
+        <div class="type">知乎</div>
+    </figure>
+    <figure>
+        <a href="http://36kr.com/" target="_blank"></a>
+        <img src="img/36kr.jpg" alt="">
+        <div>
+            <em class="sat">为创业者提供最好的产品和服务</em>
+            <span class="score"><strong>36氪</strong></span>
+        </div>
+        <div class="type">36kr</div>
+    </figure>
+    <figure>
+        <a href="http://www.woshipm.com/" target="_blank"></a>
+        <img src="img/人人都是产品经理.jpg" alt="">
+        <div>
+            <em class="sat">产品经理、产品爱好者学习交流平台</em>
+            <span class="score"><strong>人人都是产品经理</strong></span>
+        </div>
+        <div class="type">人人都是产品经理</div>
+    </figure>
+    <figure>
+        <a href="http://www.iqiyi.com/" target="_blank"></a>
+        <img src="img/爱奇艺.jpg" alt="">
+        <div>
+            <em class="sat">中国领先的视频门户</em>
+            <span class="score"><strong>爱奇艺</strong></span>
+        </div>
+        <div class="type">爱奇艺</div>
+    </figure>
+    <figure>
+        <a href="http://www.youku.com/" target="_blank"></a>
+        <img src="img/youku.png" alt="">
+        <div>
+            <em class="sat">中国领先的视频网站</em>
+            <span class="score"><strong>优酷</strong></span>
+        </div>
+        <div class="type">优酷</div>
+    </figure>
+    <figure>
+        <a href="https://www.douban.com/" target="_blank"></a>
+        <img src="img/豆瓣.png" alt="">
+        <div>
+            <em class="sat">提供图书、电影、音乐唱片的推荐</em>
+            <span class="score"><strong>豆瓣</strong></span>
+        </div>
+        <div class="type">豆瓣</div>
+    </figure>
+    <figure>
+        <a href="http://bbs.hupu.com/" target="_blank"></a>
+        <img src="img/hupu.png" alt="">
+        <div>
+            <em class="sat">最专业的篮球网站</em>
+            <span class="score"><strong>虎扑</strong></span>
+        </div>
+        <div class="type">虎扑</div>
+    </figure>
+    <figure>
+        <a href="http://www.jianshu.com/" target="_blank"></a>
+        <img src="img/简书.png" alt="">
+        <div>
+            <em class="sat">最简洁的博客</em>
+            <span class="score"><strong>简书</strong></span>
+        </div>
+        <div class="type">简书</div>
+    </figure>
+    <figure>
+        <a href="https://www.taobao.com/" target="_blank"></a>
+        <img src="img/淘宝.jpg" alt="">
+        <div>
+            <em class="sat">只有想不到，没有买不到</em>
+            <span class="score"><strong>淘宝</strong></span>
+        </div>
+        <div class="type">淘宝</div>
+    </figure>
+    <figure>
+        <a href="http://www.qunar.com/" target="_blank"></a>
+        <img src="img/去哪儿.png" alt="">
+        <div>
+            <em class="sat">特价机票,超值酒店,省心省钱,聪明你的旅行!</em>
+            <span class="score"><strong>简书</strong></span>
+        </div>
+        <div class="type">去哪儿</div>
+    </figure>
+    <figure>
+        <a href="http://www.meituan.com/" target="_blank"></a>
+        <img src="img/美团.png" alt="">
+        <div>
+            <em class="sat">吃喝玩乐好帮手,专业品质团购网</em>
+            <span class="score"><strong>美团</strong></span>
+        </div>
+        <div class="type">美团</div>
+    </figure>
+    <div class="clearfix"></div>
+</div>
+
+<footer id="footer">
+    <div class="top sm-hidden">
+        <div class="block left">
+            <h2>文艺</h2>
+            <hr>
+            <ul>
+                <li><a href="https://wuzhi.me/last" target="_blank">吾志</a></li>
+                <li><a href="http://www.kdatu.com/" target="_blank">看大图</a></li>
+                <li><a href="http://youqu.de/" target="_blank">有趣的</a></li>
+                <li><a href="http://www.sketchswap.com/" target="_blank">一画换一画</a></li>
+                <li><a href="http://www.topit.me/" target="_blank">收录美好的图片it.me</a></li>
+            </ul>
+        </div>
+
+        <div class="block center">
+            <h2>小众</h2>
+            <hr>
+            <ul>
+                <li><a href="http://www.qingfanqie.com/" target="_blank">青番茄</a></li>
+                <li><a href="http://www.duitang.com/" target="_blank">堆糖网 </a></li>
+                <li><a href="http://www.xiachufang.com/" target="_blank">下厨房</a></li>
+                <li><a href="http://ondream.org/" target="_blank">在梦上</a></li>
+                <li><a href="http://xianguo.com/hot" target="_blank">鲜果</a></li>
+            </ul>
+        </div>
+
+        <div class="block right">
+            <h2>青年</h2>
+            <hr>
+            <ul>
+                <li><a href="http://www.zimuzu.tv/" target="_blank">人人影视</a></li>
+                <li><a href="http://www.xiangdang.net/" target="_blank">香当</a></li>
+                <li><a href="http://www.blouth.com/portal.php" target="_blank">花开暖年</a></li>
+                <li><a href="http://blah.me/category/21" target="_blank">Blah书库</a></li>
+                <li><a href="http://www.u148.net/" target="_blank">有意思吧</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="version sm-visible">
+        客户端 | 触屏版 | 电脑版
+    </div>
+    <div class="bottom">Copyright © Jin<span class="sm-hidden">| 浙</span></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!Doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0;">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>横竖屏切换检测</title>
+    <style>
+        body{
+            position: relative;
+            left: 0;
+            top: 0;
+            background-color: #F0EBEB;
+        }
+        body>div{
+            display: -moz-box;
+            display: -webkit-box;
+            width: 100%;
+        }
+        #imgDiv{
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+        }
+        #btnDiv{
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+        }
+        #btnDiv p{
+            text-indent: 2em;
+            line-height: 1.5em;
+        }
+        #btn{
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+        }
+
+        /* 设备竖屏时调用该段css代码 */
+        @media all and (orientation : portrait){
+            body>div{
+                -moz-box-orient: vertical;
+                -webkit-box-orient: vertical;
+                -o-box-orient: vertical;
+                box-orient: vertical;
+            }
+            img{
+                width: 360px;
+                height: 370px;
+                margin-right: 10px;
+            }
+            #btn{
+                bottom: -120px;
+            }
+        }
+
+        /* 设备横屏时调用该段css代码 */
+        @media all and (orientation : landscape){
+            body>div{
+                -moz-box-orient: horizontal;
+                -webkit-box-orient: horizontal;
+                -o-box-orient: horizontal;
+                box-orient: horizontal;
+            }
+            #btnDiv{
+                padding-left: 200px;
+            }
+            img{
+                width: 370px;
+                height: 355px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="imgDiv">
+        <a>
+            <img src="./img/img.jpg">
+        </a>
+    </div>
+    <div id="btnDiv">
+        <div>
+            <p>易旗下利用大数据技术提供移动互联网应用的子公司,过去8年,先后推出有道词典、有道翻译官、有道云笔记、惠惠网、
+                有道推广、有道学堂、有道口语大师等系列产品,总……</p>
+        </div>
+        <div id="btn">
+            <button>了解详情</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

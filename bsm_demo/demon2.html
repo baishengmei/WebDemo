@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0;">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font-family: "Microsoft Yahei";
+            vertical-align: baseline;
+        }
+        html, body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background-color: #F0EBEB;
+        }
+        body>div{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: -moz-box;
+            display: -webkit-box;
+        }
+        #imgDiv{
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+        }
+        #btnDiv{
+            -moz-box-flex: 1;
+            -webkit-box-flex: 1;
+            box-flex: 1;
+        }
+        #imgDiv img{
+            max-width: 100%;
+        }
+        #btnDiv p{
+            text-indent: 2em;
+            line-height: 2em;
+        }
+        /* 设备竖屏时调用该段css代码 */
+        @media all and (orientation : portrait){
+            body>div{
+                -moz-box-orient: vertical;
+                -webkit-box-orient: vertical;
+                -o-box-orient: vertical;
+                box-orient: vertical;
+            }
+            #btnDiv{
+                margin-top: -60px;
+            }
+            #imgDiv img{
+                height: 100%;
+            }
+        }
+
+        /* 设备横屏时调用该段css代码 */
+        @media all and (orientation : landscape){
+            body>div{
+                -moz-box-orient: horizontal;
+                -webkit-box-orient: horizontal;
+                -o-box-orient: horizontal;
+                box-orient: horizontal;
+            }
+            #btnDiv{
+                /*margin-left: -60px;*/
+            }
+            #imgDiv img{
+                height: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div id="imgDiv">
+        <a>
+            <img src="./img/img4.jpg">
+        </a>
+    </div>
+    <div id="btnDiv">
+        <div>
+            <p>易旗下利用大数据技术提供移动互联网应用的子公司,过去8年,先后推出有道词典、有道翻译官、有道云笔记、惠惠网、
+                有道推广、有道学堂、有道口语大师等系列产品,总……</p>
+        </div>
+        <div id="btn">
+            <button>了解详情</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

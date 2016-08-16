@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var data =  [1, [2, [ [3, 4], 5], 6]];
+
+    function flat(data, result) {
+        var i, d, len;
+        for (i = 0, len = data.length; i < len; ++i) {
+            d = data[i];
+            if (typeof d === 'number') {
+                result.push(d);
+            } else {
+                flat(d, result);
+            }
+        }
+    }
+
+    var result = [];
+    flat(data, result);
+
+    console.log(result);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TEst</title>
+</head>
+<body>
+
+<div>
+    <input type="button" id ="button1" value="1" />
+    <input type="button" id ="button2" value="2" />
+</div>
+
+<script>
+    function deepClone(obj) {
+        var _toString = Object.prototype.toString;
+
+        // null, undefined, non-object, function
+        if (!obj || typeof obj !== 'object') {
+            return obj;
+        }
+
+        // DOM Node
+        if (obj.nodeType && 'cloneNode' in obj) {
+            return obj.cloneNode(true);
+        }
+
+        // Date
+        if (_toString.call(obj) === '[object Date]') {
+            return new Date(obj.getTime());
+        }
+
+        // RegExp
+        if (_toString.call(obj) === '[object RegExp]') {
+            var flags = [];
+            if (obj.global) { flags.push('g'); }
+            if (obj.multiline) { flags.push('m'); }
+            if (obj.ignoreCase) { flags.push('i'); }
+
+            return new RegExp(obj.source, flags.join(''));
+        }
+
+        var result = Array.isArray(obj) ? [] :
+                obj.constructor ? new obj.constructor() : {};
+
+        for (var key in obj ) {
+            result[key] = deepClone(obj[key]);
+        }
+
+        return result;
+    }
+
+    function A() {
+        this.a = a;
+    }
+
+    var a = {
+        name: 'qiu',
+        birth: new Date(),
+        pattern: /qiu/gim,
+        container: document.body,
+        hobbys: ['book', new Date(), /aaa/gim, 111]
+    };
+
+    var c = new A();
+    var b = deepClone(c);
+    console.log(c.a === b.a);
+    console.log(c, b);
+</script>
+<script type="text/javascript">
+    var btn1 = document.getElementById('button1');
+    var btn2 = document.getElementById('button2');
+
+    addListener(btn1, 'click', function (event) {
+        btn1.parentNode.insertBefore(btn2, btn1);
+    });
+
+    function addListener(elem, type, handler) {
+        if (elem.addEventListener) {
+            elem.addEventListener(type, handler, false);
+            return handler;
+        } else if (elem.attachEvent) {
+            function wrapper() {
+                var event = window.event;
+                event.target = event.srcElement;
+                handler.call(elem, event);
+            }
+            elem.attachEvent('on' + type, wrapper);
+            return wrapper;
+        }
+    }
+</script>
+
+</body>
+</html>

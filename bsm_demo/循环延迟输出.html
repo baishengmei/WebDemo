@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    for (var i = 0; i < 5; ++i) {
+        (function (i) {
+            setTimeout(function () {
+                console.log(i + ' ');
+            }, 1000);
+        }(i));
+    }
+
+    //方法二：
+    // delay : 1000ms
+    function print(argArr, cb) {
+
+        setTimeout(function() {
+            argArr.forEach(function(ele) {
+                console.log(ele);
+            });
+            cb && cb(argArr.length);
+        }, 1000);
+    }
+    print([0, 1, 2, 3, 4, 5], function(x){ console.log(x); })
+</script>
+</body>
+</html>
