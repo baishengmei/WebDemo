@@ -265,10 +265,13 @@ article{
 }
 .v-footer {
     margin: 1px auto 0 auto;
-    padding: 35px 20px;
+    padding: 35px 0;
     text-align: center;
     font-size: 12px;
     background: #484848;
     color: #fff;
+}
+.v-footer div{
+    padding: 0 20px;
 }
 
