@@ -19,7 +19,8 @@
         <h3 class="v-title-01">全年免费 &nbsp;&nbsp; 每天不同主题&nbsp;&nbsp;随时随地轻松学</h3>
         <div class="v-opacity-box">
             <div class="bg"></div>
-            <h2 id="v-getit-top"> 立即订阅「每日英语」</h2>
+            <!--<h2 id="v-getit-top"> <a class="pageJump" href="#v-form"> 立即订阅「每日英语」</a> </h2>-->
+            <a class="pageJump" href="#v-form"> <h2 id="v-getit-top"> 立即订阅「每日英语」 </h2></a>
         </div>
     </div>
 </header>
@@ -50,45 +51,48 @@
         </div>
         <div class="form-item-group">
             <div class="form-item-left">
-                <select name="state">
-                    省或直辖市
-                    <option value="" selected="selected">省或直辖市</option>
-                    <option value="cn_bj">b.北京</option>
-                    <option value="cn_sh">s.上海</option>
-                    <option value="cn_gd">g.广东</option>
-                    <option value="cn_cq">c.重庆</option>
-                    <option value="cn_tj">t.天津</option>
-                    <option value="cn_zj">z.浙江</option>
-                    <option value="cn_js">j.江苏</option>
-                    <option value="cn_hu">h.湖北</option>
-                    <option value="cn_sa">s.陕西</option>
-                    <option value="cn_sc">s.四川</option>
-                    <option value="cn_sd">s.山东</option>
-                    <option value="cn_fj">f.福建</option>
-                    <option value="cn_hb">h.河北</option>
-                    <option value="cn_ln">l.辽宁</option>
-                    <option value="cn_yn">y.云南</option>
-                    <option value="cn_ah">a.安徽</option>
-                    <option value="cn_gs">g.甘肃</option>
-                    <option value="cn_gx">g.广西</option>
-                    <option value="cn_gz">g.贵州</option>
-                    <option value="cn_ha">h.海南</option>
-                    <option value="cn_hl">h.黑龙江</option>
-                    <option value="cn_hn">h.河南</option>
-                    <option value="cn_na">n.湖南</option>
-                    <option value="cn_mg">m.内蒙古</option>
-                    <option value="cn_jx">j.江西</option>
-                    <option value="cn_jl">j.吉林</option>
-                    <option value="cn_nx">n.宁夏</option>
-                    <option value="cn_qh">q.青海</option>
-                    <option value="cn_sx">s.山西</option>
-                    <option value="cn_xj">x.新疆</option>
-                    <option value="cn_tb">t.西藏</option>
+                <select id="state" onchange="changeProvince()">
+                    <!--省或直辖市-->
+                    <!--<option value="" selected="selected">省或直辖市</option>-->
+                    <!--<option value="cn_bj">b.北京</option>-->
+                    <!--<option value="cn_sh">s.上海</option>-->
+                    <!--<option value="cn_gd">g.广东</option>-->
+                    <!--<option value="cn_cq">c.重庆</option>-->
+                    <!--<option value="cn_tj">t.天津</option>-->
+                    <!--<option value="cn_zj">z.浙江</option>-->
+                    <!--<option value="cn_js">j.江苏</option>-->
+                    <!--<option value="cn_hu">h.湖北</option>-->
+                    <!--<option value="cn_sa">s.陕西</option>-->
+                    <!--<option value="cn_sc">s.四川</option>-->
+                    <!--<option value="cn_sd">s.山东</option>-->
+                    <!--<option value="cn_fj">f.福建</option>-->
+                    <!--<option value="cn_hb">h.河北</option>-->
+                    <!--<option value="cn_ln">l.辽宁</option>-->
+                    <!--<option value="cn_yn">y.云南</option>-->
+                    <!--<option value="cn_ah">a.安徽</option>-->
+                    <!--<option value="cn_gs">g.甘肃</option>-->
+                    <!--<option value="cn_gx">g.广西</option>-->
+                    <!--<option value="cn_gz">g.贵州</option>-->
+                    <!--<option value="cn_ha">h.海南</option>-->
+                    <!--<option value="cn_hl">h.黑龙江</option>-->
+                    <!--<option value="cn_hn">h.河南</option>-->
+                    <!--<option value="cn_na">n.湖南</option>-->
+                    <!--<option value="cn_mg">m.内蒙古</option>-->
+                    <!--<option value="cn_jx">j.江西</option>-->
+                    <!--<option value="cn_jl">j.吉林</option>-->
+                    <!--<option value="cn_nx">n.宁夏</option>-->
+                    <!--<option value="cn_qh">q.青海</option>-->
+                    <!--<option value="cn_sx">s.山西</option>-->
+                    <!--<option value="cn_xj">x.新疆</option>-->
+                    <!--<option value="cn_tb">t.西藏</option>-->
                 </select>
             </div>
-            <div style="display:none;" class="form-item-right">
-                <select name="city" style="display:none;">城市</select>
+            <div class="form-item-right">
+                <select id="city" style="display:none;">城市</select>
             </div>
+            <!--<div class="form-item-right">-->
+                <!--<select id="city">城市</select>-->
+            <!--</div>-->
         </div>
         <div class="form-item-agree">
             <input type="checkbox" checked="checked">
@@ -121,7 +125,7 @@
         <h4>体验轻松无压力学习</h4>
         通过生动词汇卡片，即时学习效果检测工具<br>增强学习互动性，趣味性
     </div>
-    <span class="v-goto-form">立即体验</span>
+    <a href="#v-form" class="pageJump"><span class="v-goto-form">立即体验</span></a>
 </section>
 <section class="v-introduce">
     <article>
@@ -142,5 +146,7 @@
         ©Signum International S.a r.l Luxembourg Luzern Branch, EF英孚教育旗下公司，版权所有。
     </div>
 </footer>
+<script src="./js/LinkToCity.js"></script>
+<script src="./js/common.js"></script>
 </body>
 </html>

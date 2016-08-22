@@ -4,149 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script>
-        window.onload = function() {
 
-//            var cb2 = function(arr2){console.log(arr2);};
-
-//            function print(argArr, cb1){
-//                setTimeout(function(){argArr.forEach(function(ele){
-//                    console.log(ele);
-//                });
-//                    cb1&&cb1(argArr.length);
-//                }, 1000)
-//            }
-//            print([1,2,4,3,0], function(num){
-//                console.log(num);
-//                cb2(333);
-//            });
-
-
-//            var script = (function() {
-//                var scripts = [9,1,2,3,4,5,6];
-//                for (var i = 0, s; s = scripts[i++]; ) {
-//                    console.log(i+","+s);
-//                    if (s != "99") {
-//                        if (s !== -1) {
-//                            s = 88;
-//                            console.log(s);
-//                            return s;
-//                        }
-//                    }
-//                }
-//            })();
-//            console.log(script);
-
-
-//            function newElem(name) {
-//                return document.createElement(name || 'div');
-//            }
-//            var xxx;
-//            var div1 = document.getElementById("div1");
-//            div1.appendChild(xxx = newElem("p"));
-//            console.log(xxx);
-
-
-//            var style = document.getElementsByTagName("style")[0];
-//            console.log(style.textContent);
-
-
-//            function create(){
-//                var result = new Array();
-//                for(var i=0;i<10; i++){
-//                    result[i] = function (num) {
-//                        return function(){return num;};
-//                    }(i)
-//                }
-//                return result;
-//            }
-//            var createA = create();
-//            console.log(createA[2]());
-
-
-//            name = "the window";
-//            var object = {
-//                name:"my object",
-////                getName: function(){
-////                    return this.name;
-////                } //my object
-//                getName: function(){
-//                    return function (){
-//                        return this.name;
-//                    }
-//                }
-//            };
-//            //            console.log(object.getName());
-//            console.log(object.getName()());
-
-//            var yadkAd = (function () {
-//
-//                if (window.yadk) {
-//                    return;
-//                }
-//
-//                var yadk = window.yadk = {
-//                    version: "@VERSION@"
-//                };
-//
-//                return yadk;
-//
-//            })()
-//
-//            console.log(yadkAd.version);
-
-//            var b = 3, d=1;
-//            var variable = {
-//                a: 2,
-//                c: d || 4+ b
-//            };
-//
-//            alert("b:"+b+",c:"+variable.c);
-
-
-//            function stringconcat() {
-//                console.log(arguments)
-//                var arr = Array.prototype.slice.call(arguments)
-//                //答案已经输出了啊
-//                console.log(arr.join('+'))
-//                //return 的还是 undefined，为啥？
-//                return arr.join('+')
-//            }
-//
-//            stringconcat.prefix = function(str) {
-//                var _str = str
-//
-//                return function() {
-//                    var arr = [_str].concat(Array.prototype.slice.call(arguments))
-//                    return stringconcat(arr)
-//                }
-//            }
-//
-//            var stringconcatWithPrefix = stringconcat.prefix("hellworld");
-//            var result2 = stringconcatWithPrefix("a", "b");
-//            console.log(result2)
-
-//            var $div = document.getElementById("sdiv");
-//            var $div2 = document.getElementById("div2");
-//            var input = document.getElementsByTagName("input")[1];
-////            console.log($div.childNodes);
-////            console.log(document.domain);
-//            input.scrollIntoView(true);
-
-
-
-//            function addDot(strNum){
-//
-//                return strNum && ((/\./.test(strNum.toString()) && strNum.toString().replace(/(\d)(?=(\d\d\d)+\.)/g, "$1,"))
-//                        || strNum.toString().replace(/(\d)(?=(\d\d\d)+\b)/g, "$1,"));
-//            }
-
-
-
-        }
-
+//        window.onload = function() {
+            function zzz(a, b){
+                console.log("province:"+a+",city:"+b)
+            }
+//        }
     </script>
 </head>
 <body>
+<form>
+    <div>
+        <select onchange="zzz(this, this.parentNode.parentNode)"><option>di1ge</option><option>ohmay</option></select>
+    </div>
+    <div id="sel">
+        <select name="dd"><option>di2ge</option><option>gox</option></select>
+    </div>
+</form>
 
 </body>
 </html>

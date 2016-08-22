@@ -126,12 +126,13 @@ img{
 }
 #v-form .form-item-left{
     float: left;
-    width: 48%;
+    width: 48% !important;
     height: inherit;
 }
 #v-form .form-item-right{
+    display: block;
     float: right;
-    width: 48%;
+    width: 48% !important;
     height: inherit;
 }
 #v-form .form-item-group input, #v-form .form-item-group select{
@@ -274,4 +275,6 @@ article{
 .v-footer div{
     padding: 0 20px;
 }
-
+.pageJump{
+    text-decoration: none;
+}
