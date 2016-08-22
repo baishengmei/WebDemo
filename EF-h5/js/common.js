@@ -1,14 +1,16 @@
 //关联省份和城市
 var provinces = LinkToCity();
 var cities = LinkToDistrict();
+
 function changeProvince()
 {
+    var divDistrict = document.getElementById("divDistrict");
     var prov = document.getElementById("state").value;
     var city =document.getElementById("city");
-
+    divDistrict.style.display = "none";
     city.options.length =0;
     if(prov !== "省或直辖市"){
-        //city.options.length =0;
+
         city.style.display = "";
         for(var i in provinces[prov])
         {
@@ -23,10 +25,11 @@ function changeCity(){
     var city =document.getElementById("city");
     var district = document.getElementById("district");
     var divDistrict = document.getElementById("divDistrict");
-    console.log("city.value:"+city.value);
+    //console.log("city.value:"+city.value);
     district.options.length =0;
     if(city.value !== "城市" && (city.value == "b.北京市" || city.value == "s.上海市" || city.value == "c.重庆" || city.value == "t.天津")){
         divDistrict.style.display = "";
+        console.log(cities);
         for(var j in cities[city.value]){
             district.options.add(new Option(cities[city.value][j], cities[city.value][j]));
         }
