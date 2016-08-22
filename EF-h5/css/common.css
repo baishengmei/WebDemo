@@ -130,7 +130,6 @@ img{
     height: inherit;
 }
 #v-form .form-item-right{
-    display: block;
     float: right;
     width: 48% !important;
     height: inherit;
@@ -176,7 +175,7 @@ img{
 #v-form .form-item-submit{
     height: 58px;
 }
-#v-form .form-item-submit button[type="button"]{
+#v-form .form-item-submit button[type="submit"]{
     width: 100%;
     background-color: #EC008C;
     height: 42px;
@@ -277,4 +276,7 @@ article{
 }
 .pageJump{
     text-decoration: none;
+}
+form .errorBorder{
+    border: 1px solid #FF0000 !important;
 }

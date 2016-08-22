@@ -25,14 +25,14 @@
     </div>
 </header>
 <section id="v-form">
-    <form>
+    <form id="registerForm" action="https://securecn1.englishtown.com/online/cn/cnleadshandler.ashx" method="post">
         <div class="form-item-group">
             <div class="form-item-left">
-                <input type="text" name="guestname" placeholder="姓名">
+                <input type="text" name="fakename" placeholder="姓名" required>
             </div>
             <div class="form-item-right">
-                <select name="age">
-                    <option value="">年龄</option>
+                <select name="age" required>
+                    <option value="年龄">年龄</option>
                     <option value="19-22">19-22岁</option>
                     <option value="23-26">23-26岁</option>
                     <option value="27-35">27-35岁</option>
@@ -51,55 +51,23 @@
         </div>
         <div class="form-item-group">
             <div class="form-item-left">
-                <select id="state" onchange="changeProvince()">
-                    <!--省或直辖市-->
-                    <!--<option value="" selected="selected">省或直辖市</option>-->
-                    <!--<option value="cn_bj">b.北京</option>-->
-                    <!--<option value="cn_sh">s.上海</option>-->
-                    <!--<option value="cn_gd">g.广东</option>-->
-                    <!--<option value="cn_cq">c.重庆</option>-->
-                    <!--<option value="cn_tj">t.天津</option>-->
-                    <!--<option value="cn_zj">z.浙江</option>-->
-                    <!--<option value="cn_js">j.江苏</option>-->
-                    <!--<option value="cn_hu">h.湖北</option>-->
-                    <!--<option value="cn_sa">s.陕西</option>-->
-                    <!--<option value="cn_sc">s.四川</option>-->
-                    <!--<option value="cn_sd">s.山东</option>-->
-                    <!--<option value="cn_fj">f.福建</option>-->
-                    <!--<option value="cn_hb">h.河北</option>-->
-                    <!--<option value="cn_ln">l.辽宁</option>-->
-                    <!--<option value="cn_yn">y.云南</option>-->
-                    <!--<option value="cn_ah">a.安徽</option>-->
-                    <!--<option value="cn_gs">g.甘肃</option>-->
-                    <!--<option value="cn_gx">g.广西</option>-->
-                    <!--<option value="cn_gz">g.贵州</option>-->
-                    <!--<option value="cn_ha">h.海南</option>-->
-                    <!--<option value="cn_hl">h.黑龙江</option>-->
-                    <!--<option value="cn_hn">h.河南</option>-->
-                    <!--<option value="cn_na">n.湖南</option>-->
-                    <!--<option value="cn_mg">m.内蒙古</option>-->
-                    <!--<option value="cn_jx">j.江西</option>-->
-                    <!--<option value="cn_jl">j.吉林</option>-->
-                    <!--<option value="cn_nx">n.宁夏</option>-->
-                    <!--<option value="cn_qh">q.青海</option>-->
-                    <!--<option value="cn_sx">s.山西</option>-->
-                    <!--<option value="cn_xj">x.新疆</option>-->
-                    <!--<option value="cn_tb">t.西藏</option>-->
-                </select>
+                <select id="state" state="state" onchange="changeProvince()">省或直辖市</select>
             </div>
             <div class="form-item-right">
-                <select id="city" style="display:none;">城市</select>
+                <select id="city" name="city" style="display:none;" onchange="changeCity()">城市</select>
             </div>
-            <!--<div class="form-item-right">-->
-                <!--<select id="city">城市</select>-->
-            <!--</div>-->
+        </div>
+        <div class="form-item-group" style="display: none;" id="divDistrict">
+            <div class="form-item-right">
+                <select name="district" id="district">地区</select>
+            </div>
         </div>
         <div class="form-item-agree">
             <input type="checkbox" checked="checked">
             同意接收免费的每日英语课程及更多EF优惠信息
         </div>
         <div class="form-item-submit">
-            <button type="button">提交注册</button>
+            <button type="submit" id="submit">提交注册</button>
         </div>
     </form>
 </section>

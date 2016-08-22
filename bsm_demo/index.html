@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script>
-
-//        window.onload = function() {
-            function zzz(a, b){
-                console.log("province:"+a+",city:"+b)
-            }
-//        }
-    </script>
+    <style>
+        #sel1{
+            padding-right: 40px;
+        }
+    </style>
 </head>
 <body>
 <form>
     <div>
-        <select onchange="zzz(this, this.parentNode.parentNode)"><option>di1ge</option><option>ohmay</option></select>
+        <select id="sel1" style="width:120px" onchange="zzz(this, this.parentNode.parentNode)"><option>di1ge</option><option>ohmay</option></select>
     </div>
     <div id="sel">
-        <select name="dd"><option>di2ge</option><option>gox</option></select>
+        <select id="sel2" style="width:120px" name="dd"><option>di2ge</option><option>gox</option></select>
     </div>
 </form>
 
