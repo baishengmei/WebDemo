@@ -11,13 +11,13 @@ function changeProvince()
     city.options.length =0;
     if(prov !== "省或直辖市"){
 
-        city.style.display = "";
+        city.parentNode.style.display = "";
         for(var i in provinces[prov])
         {
             city.options.add(new Option(provinces[prov][i],provinces[prov][i]));
         }
     }else{
-        city.style.display = "none";
+        city.parentNode.style.display = "none";
     }
 }
 
@@ -25,9 +25,8 @@ function changeCity(){
     var city =document.getElementById("city");
     var district = document.getElementById("district");
     var divDistrict = document.getElementById("divDistrict");
-    //console.log("city.value:"+city.value);
     district.options.length =0;
-    if(city.value !== "城市" && (city.value == "b.北京市" || city.value == "s.上海市" || city.value == "c.重庆" || city.value == "t.天津")){
+    if(city.value !== "城市" && (city.value == "b.北京市" || city.value == "s.上海市" || city.value == "c.重庆市" || city.value == "t.天津市")){
         divDistrict.style.display = "";
         console.log(cities);
         for(var j in cities[city.value]){
@@ -45,80 +44,71 @@ function changeCity(){
     {
         state.options.add(new Option(index, index));
     }
-})();
 
 //表单校验
+    var form = document.getElementById("registerForm");
 
-//(function(){
-//    //表单校验
-//    var form = document.getElementById("registerForm");
-//
-//    form.onfocus = form.onblur = form.onclick = function(ev){
-//
-//        var ev = ev || window.event;
-//        var target = ev.target || ev.srcElement;
-//console.log(target);
-//        if(target.type == "submit"){
-//            console.log(form.age.value);
-//            if(form.fakename.value == "" || form.age.value == "年龄" || !(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(form.email.value))
-//                || !(/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(form.telephone.value)) || form.state.value == "省或直辖市" ||
-//                (form.state.value !== "省或直辖市" && form.city.value == "城市") || (form.state.value !== "省或直辖市" && form.state.value !== "城市" && form.district.value == "地区")){
-//
-//                if(form.fakename.value == ""){
-//                    form.fakename.setCustomValidity("请输入姓名");
-//                }else if(form.age.value == "年龄"){
-//                    form.age.setCustomValidity("请选择您的年龄");
-//                }else if(!(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(form.email.value))){
-//                    form.email.setCustomValidity("请输入您的邮箱地址");
-//                }else if(!(/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(form.telephone.value))){
-//                    form.telephone.setCustomValidity("请输入有效的手机号码");
-//                }else if(form.state.value == "省或直辖市"){
-//                    form.state.setCustomValidity("请选择您所在的省或者直辖市");
-//                }else if(form.state.value !== "省或直辖市" && form.city.value == "城市"){
-//                    form.city.setCustomValidity("请选择您所在的城市");
-//                }else if(form.state.value !== "省或直辖市" && form.state.value !== "城市" && form.district.value == "地区"){
-//                    form.district.setCustomValidity("请选择您就近的地区");
-//                }
-//            }else{
-//                return true;
-//            }
-//        }else{
-//            console.log("点击的不是submit");
-//            console.log(target.name);
-//            //当target.type!=="submit"时
-//            if(target.name == "fakename"){
-//                console.log(target.value);
-//                if(target.value == ""){
-//                    console.log("值为空");
-//                    target.setCustomValidity("请输入姓名");
-//                }
-//            }else if(target.name == "age"){
-//                if(target.value == "年龄"){
-//                    form.age.setCustomValidity("请选择您的年龄");
-//                }
-//            }else if(target.name == "email"){
-//                if(!(/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(target.value))){
-//                    target.setCustomValidity("请输入您的邮箱地址")
-//                }
-//            }else if(target.name == "telephone"){
-//                if(!(/^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/.test(target.value))){
-//                    target.setCustomValidity("请输入有效的手机号码");
-//                }
-//            }else if(target.name == "state"){
-//                if(target.value == "省或直辖市"){
-//                    target.setCustomValidity("请选择您所在的省或者直辖市");
-//                }
-//            }else if(target.name == "city"){
-//                if(target.value == "城市"){
-//                    target.setCustomValidity("请选择您所在的城市");
-//                }
-//            }else if(target.name == "district"){
-//                if(target.value == "地区"){
-//                    target.setCustomValidity("请选择您就近的地区");
-//                }
-//            }
-//        }
-//    }
-//
-//})();
+    function validateInput(ele, errorMsg){
+        ele.oninput = function(){
+            ele.setCustomValidity("");
+        };
+        ele.oninvalid = function(){
+            ele.setCustomValidity(errorMsg)
+        };
+    }
+    function execValiInput(){
+        validateInput(form.fakename, "请输入姓名");
+        validateInput(form.email, "请输入您的邮箱地址");
+        validateInput(form.telephone, "请输入有效的手机号码");
+    }
+    form.onclick = function(ev){
+        var ev = ev || window.event;
+        var target = ev.target || ev.srcElement;
+        execValiInput();
+
+        if(target.type == "submit"){
+            if(form.age.value == "年龄"){
+                console.log(form.age);
+                form.age.setCustomValidity("请选择您的年龄");
+            }else{
+                form.age.setCustomValidity("");
+            }
+
+            if(form.state.value == "省或直辖市"){
+                form.state.setCustomValidity("请选择您所在的省或者直辖市");
+            }else{
+                form.state.setCustomValidity("");
+            }
+
+            if(form.state.value !== "省或直辖市" && form.city.value == "城市"){
+                form.city.setCustomValidity("请选择您所在的城市");
+            }else{
+                form.city.setCustomValidity("");
+            }
+
+            if(form.state.value !== "省或直辖市" && form.city.value !== "城市" && form.district.value == "地区"){
+                form.district.setCustomValidity("请选择您就近的地区");
+            }else{
+                form.district.setCustomValidity("");
+            }
+        }
+
+    };
+
+// 平滑滚动的锚点效果
+    var feelNow = document.getElementById("feelNow");
+    var v_form = document.getElementById("v-form");
+    var v_getit_top = document.getElementById("v-getit-top");
+
+    feelNow.onclick = function(){
+        slideup(feelNow, v_form,  800);
+    };
+    v_getit_top.onclick = function(){
+        slideup(v_getit_top, v_form, 300)
+    }
+})();
+
+
+
+
 

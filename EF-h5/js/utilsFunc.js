@@ -1,3 +1,4 @@
+//关联城市
 function LinkToCity(){
     var provinces = [];
     provinces["省或直辖市"] = ["城市"];
@@ -33,6 +34,8 @@ function LinkToCity(){
 
     return provinces;
 }
+
+//关联地区
 function LinkToDistrict(){
     var cities = [];
     cities["b.北京市"] = ["地区","d.东城区","c.昌平区","c.朝阳区","c.崇文区","d.大兴区","f.房山区","f.丰台区","h.海淀区","h.怀柔区","m.门头沟区","m.密云县","p.平谷区","s.石景山区","s.顺义区","t.通州区","w.望京区","x.西城区","x.宣武区","y.延庆县"];
@@ -41,4 +44,35 @@ function LinkToDistrict(){
     cities["t.天津市"] = ["地区","b.天津 北辰","b.天津 滨海","d.天津 东丽","h.天津 河北","h.天津 河东","h.天津 和平","h.天津 河西","h.天津 红桥","j.天津 津南","n.天津 南开","w.天津 武清","x.天津 西青"];
 
     return cities;
+}
+
+//本页内页面平滑滚动到指定位置
+function slideup(ele1, ele2, time){//由ele1跳转到ele2
+    //获取元素所在位置距离页面最上面的高度
+    var h1 = ele1.offsetTop;
+    var h2 = ele2.offsetTop;
+    //两元素的高度差
+    var hD = h1 - h2;
+    //计算每次减去的值
+    var deH = hD/(time/10);
+    //当前的最大高度差
+    var currentH = hD;
+    //开始循环定时器
+    var timer = setInterval(function(){
+        //当前的高度差
+        currentH = currentH - deH;
+
+        window.scrollBy(0, -deH);
+        if(hD >= 0){
+            if(currentH <= 0 || (ele2.getBoundingClientRect().top >= 10)){
+                //关闭定时器
+                clearInterval(timer);
+            }
+        }else{
+            if(currentH >= 0 || (ele2.getBoundingClientRect().top <= 15)){
+                //关闭定时器
+                clearInterval(timer);
+            }
+        }
+    }, 10)
 }

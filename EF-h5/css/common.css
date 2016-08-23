@@ -128,11 +128,13 @@ img{
     float: left;
     width: 48% !important;
     height: inherit;
+    position: relative;
 }
 #v-form .form-item-right{
     float: right;
     width: 48% !important;
     height: inherit;
+    position: relative;
 }
 #v-form .form-item-group input, #v-form .form-item-group select{
     padding-top: 4px;
@@ -274,9 +276,21 @@ article{
 .v-footer div{
     padding: 0 20px;
 }
-.pageJump{
-    text-decoration: none;
-}
 form .errorBorder{
     border: 1px solid #FF0000 !important;
+}
+/*select下拉三角显示*/
+.triCarset{
+    /*background-color: #023F5F;*/
+    background: url("../img/dropbox.png") no-repeat;
+    background-size: contain;
+    position: absolute;
+    height: 32px;
+    line-height: 32px;
+    right: -7px;
+    width:32px;
+    pointer-events: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
 }

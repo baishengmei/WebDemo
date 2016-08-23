@@ -19,8 +19,7 @@
         <h3 class="v-title-01">全年免费 &nbsp;&nbsp; 每天不同主题&nbsp;&nbsp;随时随地轻松学</h3>
         <div class="v-opacity-box">
             <div class="bg"></div>
-            <!--<h2 id="v-getit-top"> <a class="pageJump" href="#v-form"> 立即订阅「每日英语」</a> </h2>-->
-            <a class="pageJump" href="#v-form"> <h2 id="v-getit-top"> 立即订阅「每日英语」 </h2></a>
+            <h2 id="v-getit-top"> 立即订阅「每日英语」 </h2>
         </div>
     </div>
 </header>
@@ -31,6 +30,7 @@
                 <input type="text" name="fakename" placeholder="姓名" required>
             </div>
             <div class="form-item-right">
+                <div class="triCarset"></div>
                 <select name="age" required>
                     <option value="年龄">年龄</option>
                     <option value="19-22">19-22岁</option>
@@ -44,21 +44,24 @@
             </div>
         </div>
         <div class="form-item-group">
-            <input type="email" name="email" placeholder="邮件">
+            <input type="email" name="email" placeholder="邮件" required>
         </div>
         <div class="form-item-group">
-            <input type="tel" name="telephone" placeholder="手机号码" maxlength="11">
+            <input type="text" name="telephone" placeholder="手机号码" required pattern="^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$">
         </div>
         <div class="form-item-group">
             <div class="form-item-left">
-                <select id="state" state="state" onchange="changeProvince()">省或直辖市</select>
+                <div class="triCarset">∨</div>
+                <select id="state" name="state" onchange="changeProvince()">省或直辖市</select>
             </div>
-            <div class="form-item-right">
-                <select id="city" name="city" style="display:none;" onchange="changeCity()">城市</select>
+            <div class="form-item-right"  style="display:none;">
+                <div class="triCarset">∨</div>
+                <select id="city" name="city" onchange="changeCity()">城市</select>
             </div>
         </div>
         <div class="form-item-group" style="display: none;" id="divDistrict">
             <div class="form-item-right">
+                <div class="triCarset">∨</div>
                 <select name="district" id="district">地区</select>
             </div>
         </div>
@@ -69,6 +72,9 @@
         <div class="form-item-submit">
             <button type="submit" id="submit">提交注册</button>
         </div>
+
+        <input name="formType" value="cneeptleads" style="display: none;">
+        <input name="nexturl" value="http://www.ef.com.cn/online/lp/cn/2014yr/ty/mobile/ee_ts.aspx?leadid={0}&etag=ydao-dic-feeds-e133765&ctr=cn&lng=cs&partner=ydao&firstname=123&lastname=123&email=12321%40123.com&telephone=13222323222&age=23-26&state=cn_ah&city=ah_tl&district=&school=&emailenglish=on&emaillist=4%2C5%2C17&omnievents=event4%2Cevent5" style="display: none;">
     </form>
 </section>
 <section class="v-everyday">
@@ -93,7 +99,7 @@
         <h4>体验轻松无压力学习</h4>
         通过生动词汇卡片，即时学习效果检测工具<br>增强学习互动性，趣味性
     </div>
-    <a href="#v-form" class="pageJump"><span class="v-goto-form">立即体验</span></a>
+    <span id="feelNow" class="v-goto-form">立即体验</span>
 </section>
 <section class="v-introduce">
     <article>
@@ -114,7 +120,7 @@
         ©Signum International S.a r.l Luxembourg Luzern Branch, EF英孚教育旗下公司，版权所有。
     </div>
 </footer>
-<script src="./js/LinkToCity.js"></script>
+<script src="js/utilsFunc.js"></script>
 <script src="./js/common.js"></script>
 </body>
 </html>
