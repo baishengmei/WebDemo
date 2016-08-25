@@ -3,81 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>EF英孚教育 卓著英语培训专家</title>
-<style>
-    .section{
-        height: 300px;
-    }
-</style>
+    <title>title</title>
+    <style>
+        #left{
+            position: absolute;
+
+            /*float: left;*/
+            /*width: 200px;*/
+            background: rgb(0,100,0);
+            /*height: 300px;*/
+            width: 100%;
+            right: 260px;
+        }
+        #right{
+            background-color: rgb(100, 100, 100);
+            /*height: 400px;*/
+            float: right;
+            width: 200px;
+            /*overflow: hidden;*/
+        }
+    </style>
 </head>
-<body class="body">
-<div >
-    <input type="button" value="点击button跳转" id="bt"/>
-</div>
-<div>
-    <div id="s1"  class="section section1">
-        <div >第一部分</div>
-    </div>
-    <div id="s2"  class="section section2">
-        <div >第二部分</div>
-    </div>
-    <div id="s3"  class="section section3">
-        <div >第三部分</div>
-    </div>
-    <div id="s4"  class="section section4">
-        <div onclick="click_scroll()">第四部分</div>
-    </div>
-    <div id="s5"  class="section section5">
-        <div >第五部分</div>
-    </div>
-</div>
-
-<script type="text/javascript">
-//    function click_scroll() {
-//        console.log("xx");
-//        var $s4 = document.getElementById("s4");
-//        var $button = document.getElementById("bt");
-//        var scroll_offset = $s4.offsetTop;
-//        var button_offset = $button.offsetTop;
-//        document.html.animate({
-//            scrollTop: scroll_offset
-//        }, 1000);
-//    }
-
-    var header=document.getElementsByTagName('header')[0];
-    var $button = document.getElementById("bt");
-    var $s2 = document.getElementById("s2");
-    var $s4 = document.getElementById("s4");
-    console.log($s2.offsetTop);
-    console.log($s4.offsetTop);
-console.log(document.body.offsetTop);
-//    var height4 = $s4.offsetTop;
-//    var height2 = $s2.offsetTop;
-//    var heightD = height4-height2;
-
-    function slideup(ele1, ele2, time){//由ele1跳转到ele2
-        //获取元素所在位置距离页面最上面的高度
-        var h1 = ele1.offsetTop;
-        var h2 = ele2.offsetTop;
-        //两元素的高度差
-        var hD = h1 - h2;
-        //计算每次减去的值
-        var deH = hD/(time/10);
-        var currentH = hD;
-        //开始循环定时器
-        var timer = setInterval(function(){
-            //当前的高度
-//            var currentH = hD;
-            currentH = currentH - deH;
-           window.scrollBy(0, -deH);
-            if(currentH <= 0){
-                //关闭定时器
-                clearInterval(timer);
-
-            }
-        }, 10)
-    }
-    function click_scroll(){
-        slideup($s4, $s2, 300);
-    }
-</script>
+<body>
+<div id="left">hello</div>
+<div id="right">world</div>
+</body>

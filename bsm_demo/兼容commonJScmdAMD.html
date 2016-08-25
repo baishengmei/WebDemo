@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    console.log(window);
+    (function(){
+        console.log(window);
+    })();
+    (function(global, factory){
+
+        if ( typeof module !== 'undefined' && typeof exports === 'object' ){
+            module.exports = factory;
+        } else if ( typeof define === 'function' && (define.amd || defined.cmd )){
+            define( function() { return factory; } );
+        } else {
+            factory( global );
+        }
+    })( typeof window !== "undefined" ? window : this, function( window, noGlobal ){
+//        ……
+    })
+
+    (function(global, factory){
+        if(typeof module !== "undefined" && typeof exports === "object"){
+            module.exports = factory;
+        }else if(typeof define == "function" && (define.amd || defined.cmd)){
+            define(function(){ return factory; })
+        }else{
+            factory(global);
+        }
+    })()
+</script>
+</body>
+</html>
