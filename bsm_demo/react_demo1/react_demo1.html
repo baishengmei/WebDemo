@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var AnswerRadioInput = React.createClass({
+        //添加动态属性
+        propTypes: {
+            id: React.PropTypes.string,
+            name: React.PropTypes.string.isRequired,
+            label: React.PropTypes.string.isRequired,
+            value: React.PropTypes.string.isRequired,
+            checked: React.PropTypes.bool,
+            onChange: React.PropTypes.func.isRequired
+        },
+        getDefaultProps: function () {
+            return {
+                id: null,
+                checked: false
+            };
+        },
+        //追踪状态
+        getInitialState: function () {
+            var id = this.props.id ? this.props.id : uniqueId('radio-');
+            return {
+                checked: !!this.props.checked,
+                id: id,
+                name: id
+            };
+        },
+        handleChanged: function (e) {
+            var checked = e.target.checked;
+            this.setState({checked:checked});
+            if(checked){
+                this.props.onChanged(this.props.value);
+            }
+        },
+        render: function () {
+            return(
+                    <div className="radio">
+                        <label htmlFor={this.props.id}>
+                            <input type="radio"
+                                   name={this.props.name}
+                                   id={this.props.id}
+                                   value={this.props.value}
+                                   checked{this.state.checked}
+                                   onChange = {this.handleChanged}
+                            />
+                            {this.props.label}
+                        </label>
+                    </div>
+            );
+        }
+    });
+    var AnswerMultipleChoiceQuestion = React.createClass({
+        propTypes: {
+            value: React.PropTypes.string,
+            choices: React.PropTypes.array.isRequired,
+            onCompleted: React.PropTypes.func.isRequired
+        },
+        getInitialState: function () {
+            return {
+                id: uniqueId('multiple-choice-'),
+                value: this.props.value
+            };
+        },
+        handleChanged: function (value) {
+            this.setState({value:value});
+            this.props.onCompleted(value);
+        },
+        renderChoice: function () {
+            return this.props.choice.map(function (choice, i) {
+                return AnswerRadioInput({
+                    id: "choice-" + i,
+                    name: this.state.id,
+                    label: choice,
+                    value: choice,
+                    checked: this.state.value === choice,
+                    onChange: this.handleChanged
+                });
+            }.bind(this));
+        },
+        render: function () {
+            return (
+                    <div className="form-group">
+                        <label className="survey-item-label" htmlFor={this.state.id}>
+                            {this.props.label}
+                        </label>
+                        <div className="survey-item-content">
+                            {this.renderChoice()}
+                        </div>
+                    </div>
+            )
+        }
+    });
+    ReactDOM.render(
+            <AnswerMultipleChoiceQuestion />,
+//            <AnswerRadioInput></AnswerRadioInput>,
+            document.getElementById('example')
+    );
+</script>
+</body>
+</html>

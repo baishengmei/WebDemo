@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="autocity"></div>
+<script type="text/babel">
+        var AutocompleteCities = React.createClass({
+            render: function () {
+                return <div id="cities" ref="autocompleteTarget"/>;
+            },
+            getDefaultProps: function () {
+                return {
+                    data: [
+                            "San Francisco",
+                            "St.Louis",
+                            "Amsterdam"
+                    ]
+                };
+            },
+            handleSelect: function (city) {
+                alert("you have selected the city of"+city);
+            },
+            componentDidMount: function () {
+                autocomplete({
+                    target: this.refs.autocompleteTarget.getDOMNode(),
+                    data: this.props.data,
+                    events:{
+                        select: this.handleSelect
+                    }
+                });
+            }
+        });
+    ReactDOM.render(
+            <AutocompleteCities/>,
+            document.getElementById("autocity")
+    )
+</script>
+</body>
+</html>
