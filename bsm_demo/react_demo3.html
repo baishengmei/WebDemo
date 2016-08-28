@@ -3,43 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../build/react.js"></script>
-    <script src="../build/react-dom.js"></script>
-    <script src="../build/browser.min.js"></script>
+    <script src="./build/react.js"></script>
+    <script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
 </head>
 <body>
-<div id="autocity"></div>
+<div id="div1"></div>
 <script type="text/babel">
-        var AutocompleteCities = React.createClass({
-            render: function () {
-                return <div id="cities" ref="autocompleteTarget"/>;
-            },
-            getDefaultProps: function () {
-                return {
-                    data: [
-                            "San Francisco",
-                            "St.Louis",
-                            "Amsterdam"
-                    ]
-                };
-            },
-            handleSelect: function (city) {
-                alert("you have selected the city of"+city);
-            },
-            componentDidMount: function () {
-                autocomplete({
-                    target: this.refs.autocompleteTarget.getDOMNode(),
-                    data: this.props.data,
-                    events:{
-                        select: this.handleSelect
-                    }
-                });
+    var MyForm = React.createClass({
+        getInitialState: function() {
+            return {
+                email: "",
+                intro: "",
+                city: "hz",
+                male: true, //性别
+                emailError: "",
+                introError: ""
+            };
+        },
+        handleEmail: function(e) {
+            var value = e.target.value;
+            var error = '';
+            if(!(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value))) {
+                error = '请输入正确的Email';
             }
-        });
+            this.setState({
+                email: value,
+                emailError: error
+            });
+        },
+        handleIntro: function(e) {
+            var value = e.target.value;
+            var error = "";
+            if(value.length < 10) {
+                error = "介绍不能少于十个字";
+            }
+            this.setState({
+                intro: value,
+                introError: error
+            });
+        },
+        handleCity: function(e) {
+            var value = e.target.value;
+            this.setState({
+                city: value,
+            });
+        },
+        handleGender: function(e) {
+            var male = !!(e.target.value == 'MALE');
+            this.setState({
+                male: male
+            });
+        },
+        render: function() {
+            return (
+                    <div>
+                        <p>
+                            <label htmlFor='email'>email:</label>
+                            <input type='text' name='intro' id='intro' value={this.state.email} onChange={this.handleEmail} />
+                            <span>{this.state.emailError}</span>
+                        </p>
+                        <p>
+                            <label htmlFor='intro'>intro:</label>
+                            <textarea type='text' name='intro' id='intro' value={this.state.intro} onChange={this.handleIntro} />
+                            <span>{this.state.introError}</span>
+                        </p>
+                        <p>
+                            <label htmlFor='city'>所在城市:</label>
+                            <select  name='city' id='city' value={this.state.city} onChange={this.handleCity}>
+                                <option value='hz'>杭州</option>
+                                <option value='bj'>北京</option>
+                                <option value='sh'>上海</option>
+                            </select>
+                        </p>
+                        <p>
+                            <label>性别:</label>
+                            <input type='radio' name='gender' checked={this.state.male} onChange={this.handleGender} value='MALE' />
+                            <input type='radio' name='gender' checked={!this.state.male} onChange={this.handleGender} value='FEMALE' />
+                        </p>
+                    </div>
+            )
+        }
+    });
+
     ReactDOM.render(
-            <AutocompleteCities/>,
-            document.getElementById("autocity")
-    )
+            <MyForm/>,
+            document.getElementById("div1")
+    );
 </script>
 </body>
 </html>

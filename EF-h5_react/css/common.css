@@ -1,0 +1,296 @@
+
+body{
+    font-family: "Helvetica Neue",Helvetica,"MicroSoft Yahei",Arial,sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+    background-color: #fff;
+    /*width: 100%;*/
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 20px;
+    color: inherit;
+    text-rendering: optimizelegibility;
+}
+body header, body section, body footer{
+    margin: 0 auto;
+    max-width: 640px;
+    display: block;
+}
+/*logo部分的样式*/
+#v-header{
+    position: relative;
+}
+img{
+    max-width: 100%;
+    vertical-align: middle;
+
+}
+.v-headerPic{
+    position: absolute;
+    top: 5%;
+    z-index: 999;
+}
+.v-logo img{
+    width: 12%;
+    left: 5%;
+}
+.v-phone img{
+    width: 7%;
+    right: 5%;
+}
+.v-billboard-box{
+    position: absolute;
+    bottom: 12%;
+    width: 100%;
+}
+.v-title-01{
+    margin: 0 0 1.5% 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1.8em;
+    line-height: 40px;
+}
+.v-opacity-box {
+    position: relative;
+    width: 60%;
+    height: 45px;
+    margin-left: 20%;
+}
+.v-opacity-box .bg, .v-opacity-box h2 {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background-color: #ec008c;
+    opacity: 0.65;
+    z-index: 1;
+    border-radius: 3px;
+    font-weight: normal;
+}
+.v-opacity-box h2 {
+    background: transparent;
+    height: 30px;
+    line-height: 60px;
+    opacity: 1;
+    color: #fff;
+    text-align: center;
+    z-index: 100;
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 414px){
+    .v-billboard-box{
+        bottom: 4%;
+    }
+    .v-title-01{
+        font-size: 1.2em;
+    }
+    .v-opacity-box .bg{
+        height: 32px;
+    }
+    .v-opacity-box h2{
+        line-height: 32px;
+        font-size: 1.2em;
+    }
+}
+@media screen and (max-width: 320px){
+    .v-billboard-box{
+        bottom: 2%;
+    }
+    .v-title-01{
+        font-size: 1.1em;
+    }
+    .v-opacity-box h2{
+        font-size: 1.1em;
+    }
+}
+/*表单部分的样式*/
+#v-form{
+    padding: 4% 5% 5% 5%;
+    font-size: 14px;
+}
+
+#v-form .form-item-group{
+    height: 46px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+#v-form .form-item-left{
+    float: left;
+    width: 48% !important;
+    height: inherit;
+    position: relative;
+}
+#v-form .form-item-right{
+    float: right;
+    width: 48% !important;
+    height: inherit;
+    position: relative;
+}
+#v-form .form-item-group input, #v-form .form-item-group select{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-indent: 7px;
+    background-color: #EEEEEE;
+    border: 1px solid #B6B6B6;
+    width: 100%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    height: 22px;
+    font-family: "微软雅黑";
+}
+#v-form .form-item-group select{
+    height: 32px;
+}
+::-webkit-input-placeholder{
+    color: #424242;
+    letter-spacing: 3px;
+}
+:-moz-placeholder{
+    color: #000;
+    letter-spacing: 3px;
+}
+:-ms-input-placeholder{
+    color: #000;
+    letter-spacing: 3px;
+}
+#v-form .form-item-agree{
+    margin-bottom: 15px;
+}
+#v-form form input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+}
+#v-form .form-item-submit{
+    height: 58px;
+}
+#v-form .form-item-submit button[type="submit"]{
+    width: 100%;
+    background-color: #EC008C;
+    height: 42px;
+    line-height: 42px;
+    padding: 0;
+    font-size: 1.4em;
+    letter-spacing: 3px;
+    border: none;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*立即体验部分*/
+.v-everyday{
+    background-color: #e3e3e3;
+    text-align: center;
+    padding-bottom: 5%;
+}
+.v-every-title {
+    font-size: 1.2em;
+    padding: 5% 0;
+    margin: 0;
+}
+.v-every-item {
+    margin-bottom: 10%;
+}
+.v-every-item span {
+    display: inline-block;
+    width: 46px;
+    height: 46px;
+    background: url(../img/sprite.png) no-repeat;
+}
+.v-every-item h4 {
+    font-size: 1.3em;
+    margin: 5px 0;
+    padding: 0;
+}
+.v-every-item span.one {
+    background-position: -8px -15px;
+}
+.v-every-item span.two {
+    background-position: -71px -14px;
+}
+.v-every-item span.three {
+    background-position: -125px -16px;
+}
+.v-every-item span.four {
+    background-position: -189px -13px;
+}
+.v-goto-form {
+    display: block;
+    width: 80%;
+    margin: 6% auto;
+    height: 40px;
+    line-height: 40px;
+    font-size: 1.4em;
+    color: #fff;
+    background: #ec008c;
+    letter-spacing: 3px;
+    text-decoration: none;
+    cursor: pointer;
+}
+.v-introduce {
+    text-align: center;
+}
+article{
+    display: block;
+}
+.v-introduce h3 {
+    padding: 0;
+    margin: 11% 0 5% 0;
+    font-size: 2em;
+    font-weight: normal;
+}
+.v-introduce h3 img {
+    vertical-align: text-bottom;
+    margin-right: 10px;
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+.v-introduce p {
+    font-size: 1.15em;
+    line-height: 26px;
+    margin-bottom: 11%;
+}
+.v-footer {
+    margin: 1px auto 0 auto;
+    padding: 35px 0;
+    text-align: center;
+    font-size: 12px;
+    background: #484848;
+    color: #fff;
+}
+.v-footer div{
+    padding: 0 20px;
+}
+form .errorBorder{
+    border: 1px solid #FF0000 !important;
+}
+/*select下拉三角显示*/
+.triCarset{
+    /*background-color: #023F5F;*/
+    background: url("../img/dropbox.png") no-repeat;
+    background-size: contain;
+    position: absolute;
+    height: 32px;
+    line-height: 32px;
+    right: -7px;
+    width:32px;
+    pointer-events: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+}

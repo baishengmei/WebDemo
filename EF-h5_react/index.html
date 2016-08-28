@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>EF英孚教育 卓著英语培训专家</title>
+    <script src="./js/react.js"></script>
+    <script src="./js/react-dom.js"></script>
+    <script src="./js/browser.min.js"></script>
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+<div id="ef_page"></div>
+
+<script type="text/babel">
+    var EF_header = React.createClass({
+        render : function () {
+            return(
+                    <header id="v-header">
+                        <img src="img/1.jpg" />
+                        <a className="v-logo" href="http://center.ef.com.cn/m/">
+                            <img className="v-headerPic" src="./img/white-logo.png" />
+                        </a>
+                        <a className="v-phone" href="tel:400-820-3015">
+                            <img className="v-headerPic" src="./img/phoneIcon.png" />
+                        </a>
+                        <div className="v-billboard-box">
+                            <h3 className="v-title-01">全年免费 &nbsp;&nbsp; 每天不同主题&nbsp;&nbsp;随时随地轻松学</h3>
+                            <div className="v-opacity-box">
+                                <div className="bg"></div>
+                                <h2 id="v-getit-top"> 立即订阅「每日英语」 </h2>
+                            </div>
+                        </div>
+                    </header>
+            )
+        }
+    });
+    var EF_section1 = React.createClass({
+        getInitialState: function () {
+            return{
+                fake_name: "",
+                email: "",
+                telephone: "",
+                ageOption: ["年龄"],
+                provinceOption: "",
+                cityOption: "",
+                districtOption: "",
+                checked: true,
+                cityDisp: "none",
+                districtDisp: "none"
+            };
+        },
+        inputChange: function (event) {
+            var newState = {};
+            newState[event.target.name] = event.target.value;
+            this.setState(newState);
+        },
+        selectChange: function (event) {
+            var checked=[];
+            var sel =event.target;
+            for(var i=0;i<sel.length; i++){
+                var option = sel.options[i];
+                if(option.selected){
+                    checked.push(option.value);
+                }
+            }
+            this.setState({
+                ageOption: checked
+            });
+        },
+        checkboxChange: function (event) {
+            this.setState({
+                checked: event.target.checked
+            });
+        },
+        LinkToCity: function () {
+            var provinces = [];
+            provinces["省或直辖市"] = ["城市"];
+            provinces["b.北京"] = ["城市","b.北京市"];
+            provinces["s.上海"] = ["城市","s.上海市"];
+            provinces["g.广东"] =["城市","g.广州市","s.深圳市","d.东莞市","f.佛山市","c.潮州市","c.从化市","h.河源市","h.惠州市","j.江门市","j.揭阳市","m.茂名市","m.梅州市","q.清远市","s.汕头市","s.汕尾市","s.韶关市","y.阳江市","y.云浮市","z.增城市","z.湛江市","z.肇庆市","z.中山市","z.珠海市"];
+            provinces["c.重庆"] =["城市","c.重庆市"];
+            provinces["t.天津"] =["城市","t.天津市"];
+            provinces["z.浙江"] =["城市","h.杭州市","n.宁波市","h.湖州市","j.嘉兴市","j.金华市","l.丽水市","q.衢州市","s.绍兴市","t.台州市","w.温州市","x.萧山区","y.义乌市","y.余姚市","z.舟山市"];
+            provinces["j.江苏"] =["城市","w.无锡市","n.南京市","c.常州市","h.淮安市","l.连云港市","n.南通市","s.宿迁市","s.苏州市","t.泰州市","x.徐州市","y.盐城市","y.扬州市","z.张家港市","z.镇江市"];
+            provinces["h.湖北"] =["城市","w.武汉市","e.恩施州市","e.鄂州市","h.黄冈市","h.黄石市","j.荆门市","j.荆州市","q.潜江市","s.十堰市","s.随州市","t.天门市","x.襄樊市","x.咸宁市","x.仙桃市","x.孝感市","y.宜昌市"];
+            provinces["s.陕西"] =["城市","x.西安市","a.安康市","b.宝鸡市","h.汉中市","c.潮州市","o.其他城市","s.商洛市","t.铜川市","w.渭南市","x.咸阳市","y.延安市","y.榆林市"];
+            provinces["s.四川"] =["城市","c.成都市","b.巴中市","d.达州市","d.德阳市","g.广安市","g.广元市","l.乐山市","l.泸州市","m.眉山市","m.绵阳市","n.南充市","n.内江市","o.其他城市","p.攀枝花市","s.遂宁市","y.雅安市","y.宜宾市","z.自贡市","z.资阳市"];
+            provinces["s.山东"] =["城市","b.滨州市","d.德州市","d.东营","h.菏泽市","n.济南市","j.济宁","l.莱芜市","l.聊城市","l.临沂市","q.青岛市","r.日照市","t.泰安市","w.潍坊市","w.威海市","y.烟台市","z.枣庄市","z.淄博市"];
+            provinces["f.福建"] =["城市","f.福州市","l.龙岩市","n.南平市","n.宁德市","p.莆田市","q.泉州市","s.三明市","x.厦门市","z.漳州市"];
+            provinces["h.河北"] =["城市","b.保定市","c.沧州市","c.承德市","h.邯郸市","h.衡水市","l.廊坊市","q.秦皇岛市","s.石家庄市","t.唐山市","x.邢台市","z.张家口市"];
+            provinces["l.辽宁"] =["城市","a.鞍山市","b.本溪市","c.朝阳市","d.大连市","d.丹东市","f.抚顺市","f.阜新市","h.葫芦岛市","j.锦州市","l.辽阳市","p.盘锦市","s.沈阳市","t.铁岭市","y.营口市"];
+            provinces["y.云南"] =["城市","b.保山市","k.昆明市","l.丽江市","l.临沧市","q.曲靖市","s.思茅市","y.玉溪市","z.昭通市"];
+            provinces["a.安徽"] =["城市","a.安庆市","b.蚌埠市","b.亳州","c.巢湖市","c.池州市","c.滁州市","f.阜阳市","h.合肥市","h.淮北市","h.淮南市","h.黄山市","l.六安市","m.马鞍山市","s.宿州市","t.铜陵市","w.芜湖市","x.宣城市"];
+            provinces["g.甘肃"] =["城市","b.白银市","d.定西市","j.嘉峪关市","j.金昌市","j.酒泉市","l.兰州市","l.陇南市","o.其他城市","p.平凉市","q.庆阳市","t.天水市","w.武威市","z.张掖市"];
+            provinces["g.广西"] =["城市","b.百色市","b.北海市","c.崇左市","f.防城港市","g.贵港市","g.桂林市","h.河池市","h.贺州市","l.来宾市","l.柳州市","n.南宁市","q.钦州市","w.梧州市","y.玉林市"];
+            provinces["g.贵州"] =["城市","a.安顺市","g.贵阳市","l.六盘水市","o.其他城市","z.遵义市"];
+            provinces["h.海南"] =["城市","h.海口市","o.其他城市","s.三亚市"];
+            provinces["h.湖南"] =["城市","c.常德市","c.长沙市","c.郴州市","h.衡阳市","h.怀化市","j.吉首市","l.娄底市","s.邵阳市","x.湘潭市","y.益阳市","y.永州市","y.岳阳市","z.张家界市","z.株洲市"];
+            provinces["n.内蒙古"] =["城市","a.阿拉善盟","b.包头市","b.巴彦淖尔市","c.赤峰市","e.鄂尔多斯市","e.二连浩特市","h.呼和浩特市","h.呼伦贝尔市","m.满洲里市","t.通辽市","w.乌海市","w.乌兰察布市","x.锡林郭勒盟","x.兴安盟"];
+            provinces["j.江西"] =["城市","f.抚州市","g.赣州市","j.吉安市","j.景德镇市","j.九江市","n.南昌市","p.萍乡市","s.上饶市","x.新余市","y.宜春市","y.鹰潭市"];
+            provinces["j.吉林"] =["城市","b.白城市","b.白山市","c.长春市","j.吉林市","l.辽源市","s.四平市","s.松原市","t.通化市","y.延边州"];
+            provinces["n.宁夏"] =["城市","g.固原市","s.石嘴山市","w.吴中市","y.银川市","z.中卫市"];
+            provinces["q.青海"] =["城市","h.海北藏族自治州","h.海东地区","h.海南藏族自治州","h.海西蒙古族藏族自治州","o.其他城市","x.西宁市"];
+            provinces["s.山西"] =["城市","c.长治市","d.大同市","j.晋城市","j.晋中市","l.临汾市","l.吕梁市","s.朔州市","t.太原市","x.忻州市","y.阳泉市","y.运城市"];
+            provinces["x.新疆"] =["城市","a.阿克苏地区","a.阿勒泰地区","h.哈密地区","h.和田地区","k.克拉玛依","k.喀什地区","o.其他城市","t.塔城地区","t.吐鲁番地区","u.乌鲁木齐市","y.伊犁哈萨克自治州"];
+            provinces["x.西藏"] =["城市","a.阿里地区","c.昌都地区","l.拉萨地区","l.林芝地区","n.那曲地区","r.日喀则地区","s.山南地区","x.西藏自治区"];
+
+            return provinces;
+        },
+        LinkToDistrict: function () {
+            var cities = [];
+            cities["b.北京市"] = ["地区","d.东城区","c.昌平区","c.朝阳区","c.崇文区","d.大兴区","f.房山区","f.丰台区","h.海淀区","h.怀柔区","m.门头沟区","m.密云县","p.平谷区","s.石景山区","s.顺义区","t.通州区","w.望京区","x.西城区","x.宣武区","y.延庆县"];
+            cities["s.上海市"] = ["地区","h.黄浦区","j.静安区","b.宝山区","c.长宁区","c.崇明县","f.奉贤区","h.虹口区","j.嘉定区","j.金山区","l.卢湾区","m.闵行区","n.南汇区","p.浦东新区","p.普陀区","q.青浦区","s.松江区","x.徐汇区","y.杨浦区","z.闸北区"];
+            cities["c.重庆市"] = ["地区","b.巴南区","b.北碚区","d.大渡口区","j.江北区","j.九龙坡区","n.南岸区","s.沙坪坝区","w.万州区","y.渝北区","y.渝中区","o.其他地区"];
+            cities["t.天津市"] = ["地区","b.天津 北辰","b.天津 滨海","d.天津 东丽","h.天津 河北","h.天津 河东","h.天津 和平","h.天津 河西","h.天津 红桥","j.天津 津南","n.天津 南开","w.天津 武清","x.天津 西青"];
+
+            return cities;
+        },
+        changeProvince: function(event){
+            var provinces = this.LinkToCity();
+            var prov = this.refs.state.value;
+            var city =this.refs.city;
+            this.setState({
+                districtDisp: "none",
+                provinceOption: ""
+            });
+            city.options.length =0;
+            if(prov !== "省或直辖市"){
+
+                this.setState({
+                    cityDisp: "",
+                    provinceOption: event.target.value
+                });
+                for(var i in provinces[prov])
+                {
+                    city.options.add(new Option(provinces[prov][i],provinces[prov][i]));
+                }
+            }else{
+                this.setState({
+                    cityDisp: "none",
+                    provinceOption:""
+                })
+            }
+
+        },
+        changeCity: function (event) {
+            var cities = this.LinkToDistrict();
+            var city = this.refs.city;
+            var district = this.refs.district;
+            district.options.length =0;
+            if(city.value !== "城市" && (city.value == "b.北京市" || city.value == "s.上海市" || city.value == "c.重庆市" || city.value == "t.天津市")){
+                this.setState({
+                    districtDisp: "",
+                    cityOption: event.target.value
+                });
+//                    console.log(cities);
+                for(var j in cities[city.value]){
+                    district.options.add(new Option(cities[city.value][j], cities[city.value][j]));
+                }
+            }else{
+                this.setState({
+                    districtDisp: "none",
+                    cityOption: event.target.value
+                });
+            }
+        },
+        changeDistrict: function (event) {
+            this.setState({
+                districtOption: event.target.value
+            })
+        },
+        componentDidMount: function () {
+            var provinces = this.LinkToCity();
+            //关联省份和城市
+            var state = this.refs.state;
+            for(var index in provinces)
+            {
+                state.options.add(new Option(index, index));
+            }
+        },
+        validateInput: function (ele, errorMsg) {
+            ele.onInput = function(){
+                ele.setCustomValidity("");
+            };
+            ele.onInvalid = function(){
+                ele.setCustomValidity(errorMsg)
+            };
+        },
+        formValidate: function (event) {
+            this.validateInput(this.refs.fakename, "请输入姓名");
+            this.validateInput(this.refs.email, "请输入您的邮箱地址");
+            this.validateInput(this.refs.telephone, "请输入有效的手机号码");
+            if(event.target.type == "submit"){
+                if(this.refs.age.value == "年龄"){
+//                    console.log(form.age);
+                    this.refs.age.setCustomValidity("请选择您的年龄");
+                }else{
+                    this.refs.age.setCustomValidity("");
+                }
+
+                if(this.refs.state.value == "省或直辖市"){
+                    this.refs.state.setCustomValidity("请选择您所在的省或者直辖市");
+                }else{
+                    this.refs.state.setCustomValidity("");
+                }
+
+                if(this.refs.state.value !== "省或直辖市" && this.refs.city.value == "城市"){
+                    this.refs.city.setCustomValidity("请选择您所在的城市");
+                }else{
+                    this.refs.city.setCustomValidity("");
+                }
+
+                if(this.refs.state.value !== "省或直辖市" && this.refs.city.value !== "城市" && this.refs.district.value == "地区"){
+                    this.refs.district.setCustomValidity("请选择您就近的地区");
+                }else{
+                    this.refs.district.setCustomValidity("");
+                }
+            }
+        },
+//        submitHandler: function (event) {
+//            event.preventDefault;
+//            alert(this.state.fakename+this.state.ageOption+this.state.email+this.state.telephone+this.state.checked+this.state.provinceOption+this.state.cityOption+this.state.districtOption);
+//        },
+        render: function () {
+            return(
+                    <section id="v-form">
+                        <form ref="registerForm"  action="https://securecn1.englishtown.com/online/cn/cnleadshandler.ashx" method="post">
+                            <div className="form-item-group">
+                                <div className="form-item-left">
+                                    <input type="text"
+                                           required
+                                           name="fakename"
+                                           ref="fakename"
+                                           placeholder="姓名"
+                                           value={this.state.fakename}
+                                           onChange={this.inputChange}
+                                    />
+                                </div>
+                                <div className="form-item-right">
+                                    <div className="triCarset"></div>
+                                    <select name="age"
+                                            ref="age"
+                                            value={this.state.ageOption}
+                                            onChange={this.selectChange}>
+                                        <option value="年龄">年龄</option>
+                                        <option value="19-22">19-22岁</option>
+                                        <option value="23-26">23-26岁</option>
+                                        <option value="27-35">27-35岁</option>
+                                        <option value="36-40">36-40岁</option>
+                                        <option value="41-50">41-50岁</option>
+                                        <option value=">51">51岁以上</option>
+                                        <option value="<18">18岁以下青少年课程</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-item-group">
+                                <input type="email"
+                                       required
+                                       name="email"
+                                       ref="email"
+                                       placeholder="邮件"
+                                       value={this.state.email}
+                                       onChange={this.inputChange}
+                                />
+                            </div>
+                            <div className="form-item-group">
+                                <input type="text"
+                                       pattern="^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$"
+                                       required
+                                       ref="telephone"
+                                       name="telephone"
+                                       placeholder="手机号码"
+                                       value={this.state.telephone}
+                                       onChange={this.inputChange}
+                                />
+                            </div>
+                            <div className="form-item-group">
+                                <div className="form-item-left">
+                                    <div className="triCarset">∨</div>
+                                    <select ref="state"
+                                            name="state"
+                                            value={this.state.provinceOption}
+                                            onChange={this.changeProvince}>
+                                        省或直辖市
+                                    </select>
+                                </div>
+                                <div className="form-item-right"  style={{display:this.state.cityDisp}}>
+                                    <div className="triCarset">∨</div>
+                                    <select
+                                            ref="city"
+                                            name="city"
+                                            value={this.state.cityOption}
+                                            onChange={this.changeCity}>
+                                        城市
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-item-group" ref="divDistrict" style={{display: this.state.districtDisp}}>
+                                <div className="form-item-right">
+                                    <div className="triCarset">∨</div>
+                                    <select
+                                            name="district"
+                                            value={this.state.districtOption}
+                                            ref="district"
+                                            onChange={this.changeDistrict}>
+                                        地区
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-item-agree">
+                                <input
+                                        type="checkbox"
+                                        checked={this.state.checked}
+                                        onChange={this.checkboxChange}
+                                />
+                                    同意接收免费的每日英语课程及更多EF优惠信息
+                            </div>
+                            <div className="form-item-submit">
+                                <button type="submit" id="submit" onClick={this.formValidate}>提交注册</button>
+                            </div>
+                            <input name="formType" value="cneeptleads" style={{display: "none"}} />
+                            <input name="nexturl" value="http://www.ef.com.cn/online/lp/cn/2014yr/ty/mobile/ee_ts.aspx?leadid={0}&etag=ydao-dic-feeds-e133765&ctr=cn&lng=cs&partner=ydao&firstname=123&lastname=123&email=12321%40123.com&telephone=13222323222&age=23-26&state=cn_ah&city=ah_tl&district=&school=&emailenglish=on&emaillist=4%2C5%2C17&omnievents=event4%2Cevent5" style={{display: "none"}}/>
+                            </form>
+                    </section>
+            )
+        }
+    });
+    var EF_section2 = React.createClass({
+        render: function () {
+            return(
+                    <section className="v-everyday">
+                        <h3 className="v-every-title">拥有「每日英语」，开启英语修炼之路！</h3>
+                        <div className="v-every-item">
+                            <span className="one"/>
+                            <h4>300+好莱坞风格影片</h4>
+                            视觉化学习方式，还原真实生活工作场景
+                        </div>
+                        <div className="v-every-item">
+                            <span className="two"/>
+                            <h4>38+精彩主题</h4>
+                            涵盖职场，旅游，看剧，购物，面试，社交
+                        </div>
+                        <div className="v-every-item">
+                            <span className="three"/>
+                            <h4>16 个量身定制级别</h4>
+                            外籍英语培训专家定制，选择符合你的级别
+                        </div>
+                        <div className="v-every-item">
+                            <span className="four"/>
+                            <h4>体验轻松无压力学习</h4>
+                            通过生动词汇卡片，即时学习效果检测工具<br />增强学习互动性，趣味性
+                        </div>
+                        <span ref="feelNow" className="v-goto-form">立即体验</span>
+                    </section>
+            )
+        }
+    });
+    var EF_section3 = React.createClass({
+        render: function () {
+            return(
+                    <section className="v-introduce">
+                        <article>
+                            <h3><img src="./img/title-sprit.png" />教育，让世界无界</h3>
+                            <p>
+                                EF英孚教育,卓著英语培训机构<br/>
+                                1965年,英孚教育在瑞典创立<br/>
+                                我们的使命是<br/>
+                                “打破语言、文化和地域上的障碍”
+                            </p>
+                        </article>
+                        <img src="./img/introduce.jpg" />
+                    </section>
+            );
+        }
+    });
+    var EF_footer = React.createClass({
+        render: function () {
+            return(
+                    <footer className="v-footer">
+                        <div>
+                            ICP 沪B2-20070075 上海英培商务咨询有限公司
+                            <br/>
+                                ©Signum International S.a r.l Luxembourg Luzern Branch, EF英孚教育旗下公司，版权所有。
+                        </div>
+                    </footer>
+            )
+        }
+    });
+    var EF_page = React.createClass({
+//        componentDidMount: function () {
+//            var feelNow = this.refs.feelNow;
+//            console.log(feelNow.type);
+//        },
+        render: function () {
+            return (
+                    <div>
+                        <EF_header/>
+                        <EF_section1/>
+                        <EF_section2/>
+                        <EF_section3/>
+                        <EF_footer/>
+                    </div>
+            );
+        }
+    });
+    ReactDOM.render(
+            <EF_page />,
+            document.getElementById("ef_page")
+    );
+</script>
+</body>
+</html>

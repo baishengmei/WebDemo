@@ -16,7 +16,7 @@
             id: React.PropTypes.string,
             name: React.PropTypes.string.isRequired,
             label: React.PropTypes.string.isRequired,
-            value: React.PropTypes.string.isRequired,
+            value: React.PropTypes.String.isRequired,
             checked: React.PropTypes.bool,
             onChange: React.PropTypes.func.isRequired
         },
@@ -102,7 +102,6 @@
     });
     ReactDOM.render(
             <AnswerMultipleChoiceQuestion />,
-//            <AnswerRadioInput></AnswerRadioInput>,
             document.getElementById('example')
     );
 </script>
