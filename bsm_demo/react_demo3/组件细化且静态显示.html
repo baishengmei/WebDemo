@@ -1,0 +1,103 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>-->
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var data = [
+        {author: "Pete Hunt", text: "This is one comment"},
+        {author: "Jordan Walke", text: "This is *another* comment"}
+    ];
+
+    var Comment = React.createClass({
+        render: function() {
+//            var rawMarkup = converter.makeHtml(this.props.children.toString());
+            return (
+                    <div className="comment">
+                        <h2 className="commentAuthor">
+                            {this.props.author}
+                        </h2>
+                        <p>{this.props.children}</p>
+                    </div>
+            );
+        }
+    });
+
+    var CommentList = React.createClass({
+        render: function() {
+//            console.log(this.props.data.author);
+
+            return (
+                    <div className="commentList">
+                        <Comment author={this.props.data.author}>
+                            {this.props.data.text}
+                        </Comment>
+                    </div>
+            );
+        }
+    });
+
+    var CommentForm = React.createClass({
+        handleSubmit: function (e) {
+            e.preventDefault();
+            var author = this.refs.author;
+            var text = this.refs.text;
+//            console.log(author.value);
+            if(!author.value || !text.value){
+                return;
+            }else{
+                this.props.onCommentSubmit({author: author.value, text: text.value});
+                author.value = "";
+                text.value = "";
+                return;
+            }
+        },
+        render: function() {
+            return (
+                    <form className="commentForm" onSubmit={this.handleSubmit}>
+
+                        <input type="text" placeholder="作者" ref="author"/>
+                        <input type="text" placeholder="留言" ref="text"/>
+                        <button type="submit">提交留言</button>
+                    </form>
+            );
+        }
+    });
+
+    var CommentBox = React.createClass({
+        getInitialState: function () {
+            return { data: [] }
+        },
+        handleCommentSubmit: function (comment) {
+//            console.log(comment);
+//            console.log(this.state.data);
+//            var newComments = [this.state.data, comment];
+            this.setState({
+                data: comment
+            });
+        },
+        render: function () {
+            return (
+                    <div className="commentBox">
+                        <h1>Comments</h1>
+                        <CommentList data={this.state.data}/>
+                        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <CommentBox />,
+            document.getElementById('example')
+    )
+</script>
+</body>
+</html>
