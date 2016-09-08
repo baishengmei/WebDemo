@@ -8,7 +8,5 @@ npm-debug.log
 logs
 .idea
 *.iml
-react.js
-browser.min.js
-react-dom.js
+
 
