@@ -8,6 +8,7 @@ function changeProvince()
     var prov = document.getElementById("state").value;
     var city =document.getElementById("city");
     divDistrict.style.display = "none";
+    //noinspection JSAnnotator
     city.options.length =0;
     if(prov !== "省或直辖市"){
 
@@ -25,6 +26,7 @@ function changeCity(){
     var city =document.getElementById("city");
     var district = document.getElementById("district");
     var divDistrict = document.getElementById("divDistrict");
+    //noinspection JSAnnotator
     district.options.length =0;
     if(city.value !== "城市" && (city.value == "b.北京市" || city.value == "s.上海市" || city.value == "c.重庆市" || city.value == "t.天津市")){
         divDistrict.style.display = "";

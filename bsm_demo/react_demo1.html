@@ -9,13 +9,12 @@
 </head>
 <body>
 <div id="example"></div>
-<script>
-    var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+<script type="text/babel">
 
     var TodoList = React.createClass({
-        getInitialState: function() {
-            return {items: ['hello', 'world', 'click', 'me']};
-        },
+//        getInitialState: function() {
+//            return {items: ['hello', 'world', 'click', 'me']};
+//        },
         handleAdd: function() {
             var newItems =
                     this.state.items.concat([prompt('Enter some text')]);
@@ -37,9 +36,10 @@
             return (
                     <div>
                         <button onClick={this.handleAdd}>Add Item</button>
-                        <ReactCSSTransitionGroup transitionName="example">
+                        <div>
                             {items}
-                        </ReactCSSTransitionGroup>
+                        </div>
+
                     </div>
             );
         }
