@@ -2,6 +2,9 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$/bsm_demo/express_demo1" libraries="{WebExcise/bsm_demo/express_demo1/node_modules}" />
+    <file url="file://$PROJECT_DIR$/bsm_demo/node_demo1" libraries="{WebExcise/bsm_demo/node_demo1/node_modules}" />
+    <file url="file://$PROJECT_DIR$/bsm_demo/node_demo3" libraries="{WebExcise/bsm_demo/node_demo3/node_modules}" />
+    <file url="file://$PROJECT_DIR$/bsm_demo/node_demo4" libraries="{WebExcise/bsm_demo/node_demo4/node_modules}" />
     <file url="file://$PROJECT_DIR$/bsm_demo/react_demo6" libraries="{WebExcise/bsm_demo/react_demo6/node_modules}" />
     <file url="file://$PROJECT_DIR$/bsm_demo/react_demo7" libraries="{WebExcise/bsm_demo/react_demo7/node_modules}" />
     <file url="file://$PROJECT_DIR$/bsm_demo/react_demo8" libraries="{WebExcise/bsm_demo/react_demo8/node_modules}" />

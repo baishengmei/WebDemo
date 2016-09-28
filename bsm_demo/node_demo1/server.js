@@ -20,7 +20,7 @@ http.createServer( function (request, response) {
             console.log(err);
             // HTTP 状态码: 404 : NOT FOUND
             // Content Type: text/plain
-            response.writeHead(404, {'Content-Type': 'text/html'});
+            response.writeHead(404, {'Content-Type': 'text/html'});//头消息决定了浏览器的解析方式，如果改成text/plain则按照字符串进行解析
         }else{
             // HTTP 状态码: 200 : OK
             // Content Type: text/plain
@@ -28,6 +28,7 @@ http.createServer( function (request, response) {
 
             // 响应文件内容
             response.write(data.toString());
+            console.log("data:"+data.toString());
         }
         //  发送响应数据
         response.end();
