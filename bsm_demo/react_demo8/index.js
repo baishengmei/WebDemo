@@ -11,7 +11,7 @@ import todoApp from './reducers'
 let store = createStore(todoApp)
 
 let rootElement = document.getElementById('root')
-render(
+ReactDOM.render(
     <Provider store={store}>
         <App />
     </Provider>,
