@@ -24,7 +24,7 @@ function downloadFile(uri,filename,callback){
     request(uri).pipe(stream).on('close', callback);
 }
 
-var fileUrl  = 'http://a.youdao.com/zhixuan/adfinance.s?operation=csv';
+var fileUrl  = 'http://a.yoouuddaaoo.com/zhixuan/adfinance.s?operation=csv';
 var filename = 'aaa.csv';
 downloadFile(fileUrl,filename,function(){
     console.log(filename+'下载完毕');
